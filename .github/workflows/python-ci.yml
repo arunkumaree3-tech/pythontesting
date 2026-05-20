@@ -1,0 +1,28 @@
+name: python CI pipeline
+
+on:
+ push:
+  branches:
+   - main
+
+jobs:
+ build:
+  runs-on: ubuntu-latest
+
+  steps:
+
+    - name: checkout code
+      uses: actions/checkout@v4
+
+    - name: python app
+      uses: actions/setup -python@v5
+      with:
+       python-version: '3.11'
+
+    - name: install dependencies
+      run: |
+       pip install -r requirements.txt
+
+    - name: run python application
+      run: |
+       python app.py
